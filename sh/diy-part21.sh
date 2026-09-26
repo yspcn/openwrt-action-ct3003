@@ -23,6 +23,6 @@ git clone -b main --single-branch --filter=blob:none https://github.com/sirpdboy
 #sed -i 's/--set=llvm\.download-ci-llvm=true/--set=llvm.download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
 
 sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
-git clone https://github.com/asvow/luci-app-tailscale package/luci-app-tailscale
-git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
-git clone https://github.com/liudf0716/luci-app-xfrpc package/luci-app-xfrpc
+# git clone https://github.com/asvow/luci-app-tailscale package/luci-app-tailscale
+git clone --depth=1 -b master https://github.com/destan19/OpenAppFilter package/OpenAppFilter
+git clone --depth=1 -b main https://github.com/liudf0716/luci-app-xfrpc package/luci-app-xfrpc
