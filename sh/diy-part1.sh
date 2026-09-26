@@ -18,4 +18,4 @@
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 #echo "src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main" >> "feeds.conf.default"
 #echo "src-git openclash https://github.com/vernesong/OpenClash.git;master" >> "feeds.conf.default"
-git clone https://github.com/vernesong/OpenClash package/OpenClash
+git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/OpenClash
