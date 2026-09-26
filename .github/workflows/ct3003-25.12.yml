@@ -15,6 +15,15 @@ name: ct3003 25.12
 on:
   repository_dispatch:
   workflow_dispatch:
+    inputs:
+      LAN_IP:
+        description: 'Set LAN IP Address'
+        required: true
+        default: '192.168.2.1'
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
 
 env:
   REPO_URL: https://github.com/chasey-dev/immortalwrt-mt798x-rebase
