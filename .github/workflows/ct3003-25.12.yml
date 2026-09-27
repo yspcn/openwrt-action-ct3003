@@ -169,14 +169,25 @@ jobs:
     - name: 生成固件Release标签
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      env:
+        GOFILE_URL: ${{ steps.gofile.outputs.url }}
       run: |
-        echo "- release_tag=ct3003-25.12-$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
-        echo "- 使用源码：${{ env.REPO_URL }}" >> $GITHUB_OUTPUT
-        echo "- 使用分支：${{ env.REPO_BRANCH }}" >> $GITHUB_OUTPUT
-        echo "- 登录地址：${{ env.IP_ADDR }}" >> $GITHUB_OUTPUT
-        touch release.txt
-        [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
+        # 1. 导出供后续步骤使用的变量（必须是 key=value 格式）
+        echo "release_tag=ct3003-25.12-$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
         echo "status=success" >> $GITHUB_OUTPUT
+        
+        # 2. 初始化 release.txt 文本
+        touch release.txt
+        
+        # 3. 追加你需要的自定义变量信息到文本中
+        echo "- 使用源码：${{ env.REPO_URL }}" >> release.txt
+        echo "- 使用分支：${{ env.REPO_BRANCH }}" >> release.txt
+        echo "- 登录地址：${{ env.IP_ADDR }}" >> release.txt
+        
+        # 4. 条件判断追加 GoFile 链接
+        if [ "${UPLOAD_GOFILE}" = "true" ] && [ -n "${GOFILE_URL}" ]; then
+          echo "- 🔗 [GoFile](${GOFILE_URL})" >> release.txt
+        fi
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@master
