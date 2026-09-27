@@ -170,7 +170,10 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=ct3003-25.12-$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
+        echo "- release_tag=ct3003-25.12-$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
+        echo "- 使用源码：${{ env.REPO_URL }}" >> $GITHUB_OUTPUT
+        echo "- 使用分支：${{ env.REPO_BRANCH }}" >> $GITHUB_OUTPUT
+        echo "- 登录地址：${{ env.IP_ADDR }}" >> $GITHUB_OUTPUT
         touch release.txt
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
