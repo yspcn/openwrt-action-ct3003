@@ -173,7 +173,7 @@ jobs:
         GOFILE_URL: ${{ steps.gofile.outputs.url }}
       run: |
         # 1. 导出供后续步骤使用的变量（必须是 key=value 格式）
-        echo "release_tag=ct3003-25.12-$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
+        echo "release_tag=cr880x-m79-b-25.12-$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
         echo "status=success" >> $GITHUB_OUTPUT
         
         # 2. 初始化 release.txt 文本
