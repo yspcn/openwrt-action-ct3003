@@ -29,7 +29,7 @@ env:
   REPO_URL: https://github.com/yspcn/immortalwrt-redmi-ax3000
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/cr880x.config
+  CONFIG_FILE: config/mt89b.config
   DIY_P1_SH: sh/diy-part1.sh
   DIY_P2_SH: sh/diy-part21.sh
   UPLOAD_BIN_DIR: false
